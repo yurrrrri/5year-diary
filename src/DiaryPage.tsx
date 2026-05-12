@@ -68,17 +68,18 @@ function DiaryPage({ selectedDate, onBack, onDateChange }: DiaryPageProps) {
   return (
     <div className="app-shell">
       <div className="page-header">
-        <button className="ghost-button small" onClick={onBack}>
-          ← 메인으로
+        <button className="ghost-button small" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px' }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          메인으로
         </button>
-        <div>
-          <p className="eyebrow">5년 일기</p>
-          <h1>{formatDateLabel(selectedDate)}의 일기</h1>
+        <div style={{ marginBottom: '32px' }}>
+          <p className="eyebrow">5년의 기록</p>
+          <h1>{formatDateLabel(selectedDate)}</h1>
           <p className="subtitle">
-            같은 날짜의 5년 기록을 한 페이지에서 작성하고 저장하세요.
+            기록은 시간이 흐를수록 더 소중해집니다.
           </p>
         </div>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", flexWrap: 'wrap', gap: '16px', alignItems: 'flex-end' }}>
           <label className="date-input-label">
             날짜 선택
             <input
@@ -91,9 +92,9 @@ function DiaryPage({ selectedDate, onBack, onDateChange }: DiaryPageProps) {
           <button
             className="ghost-button"
             onClick={() => onDateChange(todayDate)}
-            style={{ marginTop: "auto", marginLeft: 16, textWrap: "nowrap" }}
+            style={{ textWrap: "nowrap" }}
           >
-            오늘 날짜로 보기
+            오늘 보기
           </button>
         </div>
       </div>
@@ -103,23 +104,25 @@ function DiaryPage({ selectedDate, onBack, onDateChange }: DiaryPageProps) {
           <article key={year} className="entry-card">
             <div className="card-header">
               <span>{year}년</span>
+              <span style={{ fontSize: '0.8rem', opacity: 0.5, fontWeight: 400 }}>{formatDateLabel(selectedDate).split(' ')[1]} {formatDateLabel(selectedDate).split(' ')[2]}</span>
             </div>
             <textarea
               value={entries[year] ?? ""}
               onChange={(event) => handleEntryChange(year, event.target.value)}
-              placeholder={`${year}년의 오늘은 어떤 하루였나요?`}
+              placeholder={`${year}년의 오늘을 기록해 보세요...`}
             />
           </article>
         ))}
       </div>
 
-      <div className="bottom-panel">
+      <div className="bottom-panel" style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <button
           className="primary-button save-footer"
           onClick={handleSave}
           disabled={!dirty}
         >
-          저장하기
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          기록 저장하기
         </button>
       </div>
       {showToast && <div className="toast-message">저장이 완료되었습니다.</div>}

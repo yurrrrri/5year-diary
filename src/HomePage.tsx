@@ -54,7 +54,8 @@ function HomePage({ onDateSelect }: HomePageProps) {
           className="primary-button"
           onClick={() => onDateSelect(todayDate)}
         >
-          오늘 일기 보기
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          오늘 일기 쓰기
         </button>
       </div>
 
@@ -65,7 +66,9 @@ function HomePage({ onDateSelect }: HomePageProps) {
             onClick={() =>
               setCalendarMonth(new Date(currentYear, currentMonth - 1, 1))
             }
+            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
           >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
             이전
           </button>
           <div className="calendar-title">{monthLabel}</div>
@@ -74,8 +77,10 @@ function HomePage({ onDateSelect }: HomePageProps) {
             onClick={() =>
               setCalendarMonth(new Date(currentYear, currentMonth + 1, 1))
             }
+            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
           >
             다음
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
         </div>
         <div className="calendar-grid week-labels">
@@ -91,14 +96,18 @@ function HomePage({ onDateSelect }: HomePageProps) {
               day !== null &&
               savedDates.has(`${monthKey}-${String(day).padStart(2, "0")}`);
 
+            const iso = day
+              ? `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`
+              : "";
+            const isToday = iso === todayDate;
+
             return (
               <button
                 key={index}
                 type="button"
-                className={`calendar-cell ${day ? "active" : "empty"} ${hasEntry ? "has-entry" : ""}`}
+                className={`calendar-cell ${day ? "active" : "empty"} ${hasEntry ? "has-entry" : ""} ${isToday ? "today" : ""}`}
                 onClick={() => {
                   if (!day) return;
-                  const iso = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
                   onDateSelect(iso);
                 }}
                 disabled={!day}
