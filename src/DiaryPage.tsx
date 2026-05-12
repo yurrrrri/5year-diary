@@ -78,7 +78,7 @@ function DiaryPage({ selectedDate, onBack, onDateChange }: DiaryPageProps) {
             같은 날짜의 5년 기록을 한 페이지에서 작성하고 저장하세요.
           </p>
         </div>
-        <div>
+        <div style={{ display: "flex" }}>
           <label className="date-input-label">
             날짜 선택
             <input
@@ -88,13 +88,14 @@ function DiaryPage({ selectedDate, onBack, onDateChange }: DiaryPageProps) {
               onChange={(event) => onDateChange(event.target.value)}
             />
           </label>
+          <button
+            className="ghost-button"
+            onClick={() => onDateChange(todayDate)}
+            style={{ marginTop: "auto", marginLeft: 16, textWrap: "nowrap" }}
+          >
+            오늘 날짜로 보기
+          </button>
         </div>
-        <button
-          className="ghost-button"
-          onClick={() => onDateChange(todayDate)}
-        >
-          오늘 날짜로 보기
-        </button>
       </div>
 
       <div className="grid-panel">
