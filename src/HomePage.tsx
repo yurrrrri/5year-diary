@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  buildDateKey,
-  formatDateLabel,
-  STORAGE_PREFIX,
-  todayISO,
-  weekDays,
-} from "./utils";
+import { STORAGE_PREFIX, todayISO, weekDays } from "./utils";
 
 interface HomePageProps {
   onDateSelect: (date: string) => void;
@@ -54,7 +48,19 @@ function HomePage({ onDateSelect }: HomePageProps) {
           className="primary-button"
           onClick={() => onDateSelect(todayDate)}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
           오늘 일기 쓰기
         </button>
       </div>
@@ -66,9 +72,20 @@ function HomePage({ onDateSelect }: HomePageProps) {
             onClick={() =>
               setCalendarMonth(new Date(currentYear, currentMonth - 1, 1))
             }
-            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+            style={{ display: "flex", alignItems: "center", gap: "4px" }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
             이전
           </button>
           <div className="calendar-title">{monthLabel}</div>
@@ -77,10 +94,21 @@ function HomePage({ onDateSelect }: HomePageProps) {
             onClick={() =>
               setCalendarMonth(new Date(currentYear, currentMonth + 1, 1))
             }
-            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+            style={{ display: "flex", alignItems: "center", gap: "4px" }}
           >
             다음
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
           </button>
         </div>
         <div className="calendar-grid week-labels">

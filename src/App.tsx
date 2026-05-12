@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import HomePage from './HomePage';
-import DiaryPage from './DiaryPage';
-import { todayISO } from './utils';
+import { useState } from "react";
+import DiaryPage from "./DiaryPage";
+import HomePage from "./HomePage";
+import { todayISO } from "./utils";
 
 function App() {
   const [selectedDate, setSelectedDate] = useState<string>(todayISO());
-  const [page, setPage] = useState<'home' | 'diary'>('home');
+  const [page, setPage] = useState<"home" | "diary">("home");
 
   const openDiary = (date: string) => {
     setSelectedDate(date);
-    setPage('diary');
+    setPage("diary");
   };
 
-  return page === 'home' ? (
+  return page === "home" ? (
     <HomePage onDateSelect={openDiary} />
   ) : (
     <DiaryPage
       selectedDate={selectedDate}
-      onBack={() => setPage('home')}
+      onBack={() => setPage("home")}
       onDateChange={(date) => setSelectedDate(date)}
     />
   );
